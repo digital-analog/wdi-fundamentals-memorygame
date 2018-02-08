@@ -1,3 +1,13 @@
+.clearfix:after {
+visibility: hidden;
+display: block;
+content: " ";
+clear: both;
+height: 0;
+font-size: 0;
+}
+
+
 h1 {
 font-family: "Raleway", sans-serif;
 font-weight: 400;
@@ -33,7 +43,7 @@ a {
 /*When user hovers, border color changes to solid white */
 
 a: hover {
-  border-bottom: 2px solid transparent;
+  border-bottom: 2px solid white;
 }
 
 p {
@@ -87,14 +97,7 @@ footer {
   font-family: Raleway, sans-serif;
 }
 
-.clearfix:after {
-visibility: hidden;
-display: block;
-content: " ";
-clear: both;
-height: 0;
-font-size: 0;
-}
+
 
 .name {
   color: #F15B31;
