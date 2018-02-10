@@ -3,17 +3,17 @@ var cards = [
   {
     rank: "queen",
     suit: "hearts",
-    cardImage: "images/queen-of-hearts.png",
+    cardImage: "images/queen-of-hearts.png"
   },
   {
     rank: "queen",
     suit: "diamonds",
-    cardImage: "images/queen-of-diamonds.png",
+    cardImage: "images/queen-of-diamonds.png"
   },
   {
     rank: "king",
     suit: "hearts",
-    cardImage: "images/king-of-hearts.png",
+    cardImage: "images/king-of-hearts.png"
   },
   {
     rank: "king",
@@ -38,7 +38,12 @@ var checkForMatch = function () {
   };
 
 // Create a function for when user flips a card
-var flipCard = function (cardId) {
+var flipCard = function () {
+
+//Get the data attribute of the card that was flipped
+cardId = this.getAttribute('data-id');
+console.log(cardId);
+
 
   //Display in the console the card that user flipped
   console.log("User flipped " + cards[cardId].rank);
@@ -52,15 +57,38 @@ var flipCard = function (cardId) {
   //Display the suit in the console
   console.log(cards[cardId].suit)
 
+  //Display card's image
+  this.setAttribute('src', cards[cardId].cardImage);
 
   // Check to see if two cards were played
   if (cardsInPlay.length === 2) {
     // If so, call the checkForMatch function
     checkForMatch();
+    cardsInPlay = [];
   }
 };
 
-// Call the flipCard function, passing in 0 as an argument
-flipCard(0);
-//Call the flipCard function, passing in 2 as an argument
-flipCard(2);
+// Function for creating board
+var createBoard = function () {
+  //Loop through the cards array
+  for (var i = 0; i < cards.length; i++) {
+
+    // Create an image element
+    var cardElement = document.createElement('img');
+
+    //Dispay back of card image
+    cardElement.setAttribute('src','images/back.png');
+
+    //Set the card's data-id to be the index of current element i
+    cardElement.setAttribute('data-id',i);
+
+    // Add a click event to the cardElement
+    cardElement.addEventListener('click', flipCard);
+
+    //Append the card to the createBoard
+    document.getElementById('game-board').appendChild(cardElement);
+  }
+}
+
+//Call createBoard function
+createBoard();
